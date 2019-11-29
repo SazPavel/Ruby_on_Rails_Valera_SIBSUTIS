@@ -1,0 +1,31 @@
+<h1>Информация о действиях Валеры</h1>
+<% if current_user.try(:admin?) %>
+  <%= link_to 'Создать новое действие', new_article_path %>
+<% end %>
+<table>
+  <tr>
+    <th>Название</th>
+    <th></th>
+  </tr>
+
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= link_to 'Подробнее', article_path(article) %></td>
+      <% if current_user.try(:admin?) %>
+        <td><%= link_to 'Изменить', edit_article_path(article) %></td>
+        <td><%= link_to 'Удалить', article_path(article),
+                method: :delete,
+                data: { confirm: 'Вы уверены?' } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<hr>
+<% if user_signed_in? %>
+  <span>Здравствуйте, <%= current_user.email %></span>
+  <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+<% else %>
+  <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+<% end %>
