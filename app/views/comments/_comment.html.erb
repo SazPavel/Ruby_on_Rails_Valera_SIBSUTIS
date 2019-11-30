@@ -1,0 +1,18 @@
+<p>
+  <strong>Комментатор:</strong>
+  <%= comment.commenter %>
+</p>
+
+<p>
+  <strong>Комментарий:</strong>
+  <%= comment.body %>
+</p>
+
+
+<% if current_user.try(:admin?) %>
+  <p>
+    <%= link_to 'Удалить комментарий', [comment.post, comment],
+                 method: :delete,
+                 data: { confirm: 'Вы уверены?' } %>
+  </p>
+<% end %>
