@@ -1,10 +1,11 @@
 <%= form_with model: @article, local: true do |form| %>
 
   <hr>
+  <br>
   <% if user_signed_in? %>
     <span>Здравствуйте, <%= current_user.email %></span>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+    <p class = "left"><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></p>
   <% else %>
-    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+    <p class = "left"><%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %></p>
   <% end %>
 <% end %>
