@@ -1,15 +1,13 @@
-
-<%= link_to 'На главную', controller: 'welcome' %>
+<%= render 'menu' %>
 <p>
-  <strong>Название:</strong>
-  <%= @post.title %>
+  <strong><center><%= @post.title %></center></strong>
 </p>
 
 <p>
-  <%= @post.text %>
+  <center><%= @post.text %></center>
 </p>
 
-<h2>Комментарии</h2>
+<h1>Комментарии</h1>
 <%= render @post.comments %>
 
 <% if user_signed_in? %>
@@ -21,12 +19,6 @@
 <% if current_user.try(:admin?) %>
   <%= link_to 'Изменить', edit_post_path(@post) %> 
 <% end %>
-<%= link_to 'Вернуться', posts_path %> <br>
+<%= link_to '<button type="button">Вернуться</button>'.html_safe, posts_path %> <br>
 
-<hr>
-<% if user_signed_in? %>
-  <span>Здравствуйте, <%= current_user.email %></span>
-  <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
-<% end %>
+<%= render 'sign' %>

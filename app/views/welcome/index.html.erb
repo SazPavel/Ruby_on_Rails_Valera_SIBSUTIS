@@ -1,14 +1,5 @@
-<h1>Hello Valera</h1>
-<p>Здесь вы можете поиграть в онлайн валеру бесплатно без смс и регистрации(а можете и с регистрацией)</p>
-<%= link_to 'Список действий Валеры', controller: 'articles' %><br>
-<%= link_to 'Загляните на форум', controller: 'posts' %>
+<%= render 'menu' %>
+<h1><center>Hello Valera</center></h1>
+<p>Здесь вы можете поиграть в онлайн валеру бесплатно без смс и регистрации(а можете и с регистрацией)</p><br>
 
-<hr>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<% if user_signed_in? %>
-  <span>Здравствуйте, <%= current_user.email %></span>
-  <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
-<% end %>
+<%= render 'sign' %>
