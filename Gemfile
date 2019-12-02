@@ -41,6 +41,8 @@ gem 'devise'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 group :development, :test do
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'factory_bot_rails'
   gem 'rspec-core'
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
