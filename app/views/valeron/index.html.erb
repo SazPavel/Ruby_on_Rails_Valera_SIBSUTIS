@@ -9,4 +9,45 @@
 Бабло: <%= val.money %> <br>
 Жив? <%= val.alive? %> <br>
 
+<br> <br> <b>НЕПОТРЕБСТВО STARTS HERE</b> <br> <br
+Действия <br>
+
+<% act = Valeraction.new %>
+<% act.name = 'name' %>
+<% act.before_text = 'b' %>
+<% act.after_text = 'a' %>
+Name: <%= act.name %> <br>
+BT: <%= act.before_text %> <br>
+AT: <%= act.after_text %> <br>
+
+<br><br>
+бррр
+<br><br>
+
+<% actions = ActionLoader.new('action.yaml').load %>
+<% actions.each do |a| %>
+  <b> name:        <%= a.name %> </b> <br>
+  before_text: <%= a.before_text %> <br>
+  after_text:  <%= a.after_text %> <br>
+  conds: <br>
+    <% a.conds.each do |ac| %>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <%= ac['field'] %>
+      <%= ac['operator'] %>
+      <%= ac['value'] %>
+      <br>
+    <% end %>
+  effects: <br>
+    <% a.effects.each do |ae| %>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <%= ae['field'] %>
+      <%= ae['operator'] %>
+      <%= ae['value'] %>
+      <br>
+    <% end %>
+
+  <br>
+<% end %>
+
+
 <%= render 'sign' %>
