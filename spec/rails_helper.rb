@@ -5,6 +5,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 require 'devise'
+require 'database_cleaner'
 require_relative 'support/controller_macros'
 
 # Prevent database truncation if the environment is production
@@ -58,6 +59,12 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  config.after(:suite) do
+    DatabaseCleaner.clean_with :truncation
+    DatabaseCleaner.strategy = :truncation
+  end
+
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
