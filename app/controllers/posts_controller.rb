@@ -12,7 +12,11 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    begin
+      @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to posts_path
+    end
   end
 
   def new
@@ -20,7 +24,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    begin
+      @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to posts_path
+    end
   end
 
   def create
@@ -34,7 +42,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
+    begin
+      @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to posts_path
+    end
 
     if @post.update(post_params)
       redirect_to @post
@@ -44,7 +56,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    begin
+      @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to posts_path
+    end
     @post.destroy
 
     redirect_to posts_path
