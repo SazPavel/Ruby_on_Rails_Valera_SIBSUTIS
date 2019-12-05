@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-#  resources :dervaleras
   resources :valerons
   resources :valeractions
   resources :action_loaders
