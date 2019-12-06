@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
+# Articles about actions
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :authenticate_admin!, except: [:index, :show]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_admin!, except: %i[index show]
   def authenticate_admin!
-    unless current_user.admin
-      redirect_to root_path
-    end
+    return if current_user.admin
+
+    redirect_to root_path
   end
 
   def index
@@ -12,11 +15,9 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    begin
-      @article = Article.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to articles_path
-    end
+    @article = Article.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to articles_path
   end
 
   def new
@@ -24,11 +25,9 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    begin
-      @article = Article.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to articles_path
-    end
+    @article = Article.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to articles_path
   end
 
   def create
@@ -43,11 +42,11 @@ class ArticlesController < ApplicationController
   def update
     begin
       @article = Article.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       redirect_to articles_path
       return
     end
-    
+
     if @article.update(article_params)
       redirect_to @article
     else
@@ -58,7 +57,7 @@ class ArticlesController < ApplicationController
   def destroy
     begin
       @article = Article.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       redirect_to articles_path
       return
     end
@@ -68,7 +67,8 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :text)
-    end
+
+  def article_params
+    params.require(:article).permit(:title, :text)
+  end
 end

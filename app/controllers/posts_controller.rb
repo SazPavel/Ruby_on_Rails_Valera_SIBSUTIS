@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
+# posts on forum
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :authenticate_admin!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_admin!, only: %i[edit update destroy]
   def authenticate_admin!
-    unless current_user.admin
-      redirect_to root_path
-    end
+    return if current_user.admin
+
+    redirect_to root_path
   end
 
   def index
@@ -12,11 +15,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    begin
-      @post = Post.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to posts_path
-    end
+    @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to posts_path
   end
 
   def new
@@ -24,11 +25,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    begin
-      @post = Post.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to posts_path
-    end
+    @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to posts_path
   end
 
   def create
@@ -44,7 +43,7 @@ class PostsController < ApplicationController
   def update
     begin
       @post = Post.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       redirect_to posts_path
     end
 
@@ -58,7 +57,7 @@ class PostsController < ApplicationController
   def destroy
     begin
       @post = Post.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       redirect_to posts_path
     end
     @post.destroy
@@ -67,7 +66,8 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_params
-      params.require(:post).permit(:title, :text)
-    end
+
+  def post_params
+    params.require(:post).permit(:title, :text)
+  end
 end
