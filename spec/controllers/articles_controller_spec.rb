@@ -166,7 +166,8 @@ RSpec.describe ArticlesController, type: :controller do
       context 'with valid article' do
         subject { get :show, params: { id: article.id } }
         it 'should get show' do
-          expect(subject).to have_http_status(:success)        end
+          expect(subject).to have_http_status(:success)
+        end
       end
       context 'with invalid article' do
         subject { get :show, params: { id: 100 } }

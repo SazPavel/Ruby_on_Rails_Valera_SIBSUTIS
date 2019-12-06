@@ -23,7 +23,8 @@ RSpec.describe PostsController, type: :controller do
     describe 'GET #create' do
       context 'with valid post' do
         subject do
-          get :create, params: { post: { title: 'test_test_test', text: 'test_test_test' } }
+          get :create, params: { post:
+            { title: 'test_test_test', text: 'test_test_test' } }
         end
         it 'should redirect after create' do
           expect(subject).to have_http_status(:redirect)
@@ -152,7 +153,8 @@ RSpec.describe PostsController, type: :controller do
     describe 'GET #create' do
       context 'with valid post' do
         subject do
-          get :create, params: { post: { title: 'test_test_test', text: 'test_test_test' } }
+          get :create, params: { post:
+            { title: 'test_test_test', text: 'test_test_test' } }
         end
         it 'should redirect after create' do
           expect(subject).to have_http_status(:redirect)
