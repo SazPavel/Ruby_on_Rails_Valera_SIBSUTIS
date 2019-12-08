@@ -5,6 +5,9 @@ ValeraModule::Application.routes.draw do
   devise_for :users
   get 'welcome/index'
 
+  get 'game/index'
+  get 'game/show'
+
   resources :articles
   resources :posts do
     resources :comments
