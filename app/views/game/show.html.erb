@@ -1,5 +1,12 @@
 <%= render 'for_render/menu' %>
 
-GAME SHOW
+<br><b>Текущие параметры Валеры: </b><br>
+<%= [VALERA.health, VALERA.mana, VALERA.cheerfulness, VALERA.fatigue, VALERA.money] %> <br>
 
+<br> <b>Допустимые действия: </b><br>
+<% actions = get_available %>
+<% actions.each do |a| %>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<%= a.name %> <br>
+<% end %>
 <%= render 'for_render/sign' %>

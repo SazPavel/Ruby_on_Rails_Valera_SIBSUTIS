@@ -13,5 +13,6 @@ ValeraModule::Application.routes.draw do
     resources :comments
   end
   root 'welcome#index'
+
 end
 

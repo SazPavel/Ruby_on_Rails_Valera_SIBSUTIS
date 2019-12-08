@@ -16,6 +16,10 @@ class ActionLoader
 #    )
   end
 
+  def available_action(valera)
+    actions.select { |action| ValeraChecker.send(:check, valera, action) }
+  end
+
   private
 
   def build_action(data)
@@ -32,9 +36,5 @@ class ActionLoader
 
   def build_effect(data)
     data.to_hash
-  end
-
-  def available_action(valera)
-    actions.select { |action| ValeraChecker.send(:check, valera, action) }
   end
 end

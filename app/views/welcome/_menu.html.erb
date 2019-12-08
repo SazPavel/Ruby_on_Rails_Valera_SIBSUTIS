@@ -1,0 +1,10 @@
+<%= form_with model: @article, local: true do |form| %>
+<nav>
+  <ul class="menu">
+    <li><%= link_to 'ААААА!!!', controller: 'game' %></li>
+    <li><%= link_to 'Главная', controller: 'welcome' %></li>
+    <li><%= link_to 'Действия', controller: 'articles' %></li>
+    <li><%= link_to 'Форум', controller: 'posts' %></li>
+  </ul>
+</nav>
+<% end %>

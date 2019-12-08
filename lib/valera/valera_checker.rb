@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './action.rb'
+require 'action.rb'
 
 # Checker for available actions
 class ValeraChecker
