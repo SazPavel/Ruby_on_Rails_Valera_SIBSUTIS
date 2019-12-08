@@ -14,5 +14,7 @@ ValeraModule::Application.routes.draw do
   end
   root 'welcome#index'
 
+  get 'execute_action', to: 'game#execute_action', as: :execute_action
+
 end
 

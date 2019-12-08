@@ -1,12 +1,30 @@
 class GameController < ApplicationController
   include GameHelper
+
   def show
-    redirect_to :index
   end
   def index
     render :show
   end
-#  def print_valera
-#    redirect_to :show
-#  end
+  def execute_action
+    action = get_available.find { |a| a.name == params[:action_name] }
+    valeroid = action.execute!(VALERA) unless action.nil?
+    redirect_to action: "show"
+           #############
+          #  # ##  ##   #
+         #               #
+        #  ###     ####   #
+        # #               #
+        #  ####     ####  #
+        #    ##       ##   # -- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+       ##        #         ##
+      ###       #          ### 
+       ##      #           ##
+       ##       ##         ##
+         #                #
+         #     ####      #
+          #   ######    ##
+           # # #### #  #
+            ##      ###
+  end        ########
 end

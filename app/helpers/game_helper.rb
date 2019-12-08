@@ -6,7 +6,4 @@ module GameHelper
     loader.available_action(VALERA)
   end
 
-  def execute(action)
-  end
-
 end

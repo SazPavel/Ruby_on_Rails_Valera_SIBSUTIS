@@ -7,6 +7,8 @@
 <% actions = get_available %>
 <% actions.each do |a| %>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<%= a.name %> <br>
+<%= link_to a.before_text, {:controller => 'game', 
+            :action => 'execute_action', :action_name => a.name} %> <br>
+
 <% end %>
 <%= render 'for_render/sign' %>
