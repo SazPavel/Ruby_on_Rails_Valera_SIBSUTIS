@@ -2,4 +2,43 @@
 <h1><center>Hello Valera</center></h1>
 <p>Здесь вы можете поиграть в онлайн валеру бесплатно без смс и регистрации(а можете и с регистрацией)</p><br>
 
+Исходные параметры Валеры: <br>
+<%= [VALERA.health, VALERA.mana, VALERA.cheerfulness, VALERA.fatigue, VALERA.money] %> <br>
+Пробуем переинициализировать Валеру: <br>
+<% VALERA.reinitialize!(50, 50, 50, 50, 50) %>
+<%= [VALERA.health, VALERA.mana, VALERA.cheerfulness, VALERA.fatigue, VALERA.money] %> <br>
+И возвращаем его на место: <br>
+<% VALERA.reinitialize!(100, 0, 0, 0, 100) %>
+<%= [VALERA.health, VALERA.mana, VALERA.cheerfulness, VALERA.fatigue, VALERA.money] %> <br>
+
+<br><br>
+<b>Список действий</b>
+<br><br>
+
+<% actions = ActionLoader.new('action.yaml').load %>
+<% actions.each do |a| %>
+  <b> name:        <%= a.name %> </b> <br>
+  before_text: <%= a.before_text %> <br>
+  after_text:  <%= a.after_text %> <br>
+  conds: <br>
+    <% a.conds.each do |ac| %>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <%= ac['field'] %>
+      <%= ac['operator'] %>
+      <%= ac['value'] %>
+      <br>
+    <% end %>
+  effects: <br>
+    <% a.effects.each do |ae| %>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <%= ae['field'] %>
+      <%= ae['operator'] %>
+      <%= ae['value'] %>
+      <br>
+    <% end %>
+
+  <br>
+<% end %>
+
+
 <%= render 'sign' %>
