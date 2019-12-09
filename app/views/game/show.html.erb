@@ -4,7 +4,7 @@
 <%= [VALERA.health, VALERA.mana, VALERA.cheerfulness, VALERA.fatigue, VALERA.money] %> <br>
 
 <br> <b>Допустимые действия: </b><br>
-<% actions = get_available %>
+<% actions = available %>
 <% actions.each do |a| %>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <%= link_to a.before_text, {:controller => 'game', 

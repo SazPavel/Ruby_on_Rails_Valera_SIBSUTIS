@@ -11,9 +11,7 @@ class ActionLoader
   def load
     return unless File.file?(@filename)
 
-#    ActionsContainer.new(
     @actions = YAML.safe_load(File.open(@filename)).map { |data| build_action(data) }
-#    )
   end
 
   def available_action(valera)
