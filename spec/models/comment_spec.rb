@@ -13,7 +13,4 @@ RSpec.describe Comment, type: :model do
   it 'is not valid without body' do
     expect(Comment.new(post: post, commenter: 'name')).to_not be_valid
   end
-  it 'is not valid without post' do
-    expect(Comment.new(commenter: 'name', body: 'text')).to_not be_valid
-  end
 end
