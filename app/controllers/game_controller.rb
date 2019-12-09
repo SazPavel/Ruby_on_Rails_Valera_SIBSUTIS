@@ -11,7 +11,7 @@ class GameController < ApplicationController
   end
 
   def execute_action
-    action = get_available.find { |a| a.name == params[:action_name] }
+    action = available.find { |a| a.name == params[:action_name] }
     valeroid = action.execute!(VALERA) unless action.nil?
     redirect_to action: 'show'
   end
