@@ -11,6 +11,9 @@
             :action => 'execute_action', :action_name => a.name} %> <br>
 
 <% end %>
-<%= link_to '<button type="button">load</button>'.html_safe, {:controller => 'game', :action => 'load_valera'} %>
-<%= link_to '<button type="button">save</button>'.html_safe, {:controller => 'game', :action => 'save_valera'} %>
+<%= link_to '<button type="button">new game</button>'.html_safe, {:controller => 'game', :action => 'init_valera'} %>
+<% if user_signed_in? %>
+  <%= link_to '<button type="button">load</button>'.html_safe, {:controller => 'game', :action => 'load_valera'} %>
+  <%= link_to '<button type="button">save</button>'.html_safe, {:controller => 'game', :action => 'save_valera'} %>
+<% end %>
 <%= render 'for_render/sign' %>

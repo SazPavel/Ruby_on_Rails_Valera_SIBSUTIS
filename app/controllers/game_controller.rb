@@ -1,5 +1,3 @@
-require "logger"
-
 class GameController < ApplicationController
   include GameHelper
   before_action :authenticate_user!, expect: %i[index show]
@@ -26,12 +24,10 @@ class GameController < ApplicationController
   
   def load_valera
     begin
-      @logger = Logger.new(STDOUT)
       @valera = ValeraParam.find_by(user_id: current_user.id)
       if @valera.nil?
         init_valera
       else
-        @logger.info @valera
         valera_update(@valera)
         redirect_to action: "show"
       end
