@@ -11,4 +11,7 @@
             :action => 'execute_action', :action_name => a.name} %> <br>
 
 <% end %>
+
+<%= link_to '<button type="button">Начать с начала</button>'.html_safe, {:controller => 'game', 
+            :action => 'refresh'} %> 
 <%= render 'for_render/sign' %>
