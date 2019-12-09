@@ -19,5 +19,7 @@ ValeraModule::Application.routes.draw do
 
   get 'execute_action', to: 'game#execute_action', as: :execute_action
 
+  get 'refresh', to: 'game#refresh', as: :refresh
+
 end
 

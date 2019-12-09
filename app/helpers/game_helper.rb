@@ -1,3 +1,4 @@
+
 module GameHelper
 
   def get_available
@@ -9,5 +10,6 @@ module GameHelper
   def valera_update(valera)
     VALERA.reinitialize!(valera.health, valera.mana,
       valera.cheerfulness, valera.fatigue, valera.money)
+
   end
 end

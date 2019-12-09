@@ -1,14 +1,14 @@
+# frozen_string_literal: true
+
+# GameController
 class GameController < ApplicationController
   include GameHelper
   before_action :authenticate_user!, expect: %i[index show]
 
-  def show
-  end
-  def index
-    render :show
-  end
+  def show;  end
+
   def execute_action
-    action = get_available.find { |a| a.name == params[:action_name] }
+    action = available.find { |a| a.name == params[:action_name] }
     valeroid = action.execute!(VALERA) unless action.nil?
     redirect_to action: "show"
   end
@@ -49,11 +49,5 @@ class GameController < ApplicationController
     @valera.money = VALERA.money
     @valera.save
     redirect_to action: "show"
-  end
-  
-  private
-
-  def valera_params
-    params.require(:valeraparams).permit(:user_id, :health, :mana, :cheerfulness, :fatigue, :money)
   end
 end
