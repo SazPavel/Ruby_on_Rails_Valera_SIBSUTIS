@@ -10,12 +10,14 @@ ValeraModule::Application.routes.draw do
   get 'game/save_valera'
   get 'game/init_valera'
 
+  resources :articles
   resources :posts do
     resources :comments
   end
   root 'welcome#index'
 
   get 'execute_action', to: 'game#execute_action', as: :execute_action
+
 
 end
 
