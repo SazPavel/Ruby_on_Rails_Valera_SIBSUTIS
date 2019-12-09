@@ -13,7 +13,7 @@ class GameController < ApplicationController
   end
 
   def refresh
-  	VALERA.reinitialize!(100, 0, 0, 0, 100)
+    VALERA.reinitialize!(100, 0, 0, 0, 100)
     redirect_to action: 'show'
   end
 end
