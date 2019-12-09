@@ -1,0 +1,2 @@
+class ValeraParam < ApplicationRecord
+end

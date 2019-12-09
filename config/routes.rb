@@ -7,6 +7,8 @@ ValeraModule::Application.routes.draw do
 
   get 'game/index'
   get 'game/show'
+  get 'game/load_valera'
+  get 'game/save_valera'
 
   resources :articles
   resources :posts do
