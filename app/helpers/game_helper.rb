@@ -1,7 +1,7 @@
 
 module GameHelper
 
-  def get_available
+  def available
     loader = ActionLoader.new('action.yaml')
     loader.load
     loader.available_action(VALERA)

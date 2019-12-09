@@ -3,7 +3,7 @@
 # GameController
 class GameController < ApplicationController
   include GameHelper
-  before_action :authenticate_user!, expect: %i[index show]
+  before_action :authenticate_user!, only: %i[load_valera save_valera]
 
   def show;  end
 
@@ -15,7 +15,6 @@ class GameController < ApplicationController
     
   def init_valera
     @valera = ValeraParam.new
-    @valera.user_id = current_user.id
     @valera.health = 100
     @valera.money = 100
     valera_update(@valera)
@@ -23,16 +22,13 @@ class GameController < ApplicationController
   end
   
   def load_valera
-    begin
-      @valera = ValeraParam.find_by(user_id: current_user.id)
-      if @valera.nil?
-        init_valera
-      else
-        valera_update(@valera)
-        redirect_to action: "show"
-      end
-    rescue ActiveRecord::RecordNotFound
+    @valera = ValeraParam.find_by(user_id: current_user.id)
+    if @valera.nil?
       init_valera
+      @valera.user_id = current_user.id
+    else
+      valera_update(@valera)
+      redirect_to action: "show"
     end
   end
   
