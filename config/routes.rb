@@ -1,13 +1,20 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
+ValeraModule::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   get 'welcome/index'
+
+  get 'game/index'
+  get 'game/show'
 
   resources :articles
   resources :posts do
     resources :comments
   end
   root 'welcome#index'
+
+  get 'execute_action', to: 'game#execute_action', as: :execute_action
+
 end
+

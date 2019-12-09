@@ -1,4 +1,4 @@
-<%= render 'menu' %>
+<%= render 'for_render/menu' %>
 <h1><center>Наш форум</center></h1>
 <% if user_signed_in? %>
   <%= link_to 'Создать новый пост', new_post_path %>
@@ -19,4 +19,4 @@
   <% end %>
 </table>
 
-<%= render 'sign' %>
+<%= render 'for_render/sign' %>

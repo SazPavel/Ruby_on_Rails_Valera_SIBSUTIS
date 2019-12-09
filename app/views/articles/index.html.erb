@@ -1,4 +1,4 @@
-<%= render 'menu' %>
+<%= render 'for_render/menu' %>
 <h1><center>Информация о действиях Валеры</center></h1>
 <% if current_user.try(:admin?) %>
   <%= link_to 'Создать новое действие', new_article_path %>
@@ -19,4 +19,4 @@
   <% end %>
 </table>
 
-<%= render 'sign' %>
+<%= render 'for_render/sign' %>
