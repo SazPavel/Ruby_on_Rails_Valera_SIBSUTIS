@@ -1,7 +1,24 @@
 <%= render 'for_render/menu' %>
 
 <br><b>Текущие параметры Валеры: </b><br>
-<%= [VALERA.health, VALERA.mana, VALERA.cheerfulness, VALERA.fatigue, VALERA.money] %> <br>
+Здоровье:
+<div id="line-container">
+  <div id="greenBar" style="width: <%= VALERA.health %>%" ><%= VALERA.health %></div>
+</div>
+Мана:
+<div id="line-container">
+  <div id="greenBar" style="width: <%= VALERA.mana %>%"><%= VALERA.mana %></div>
+</div>
+Веселье:
+<div id="line-container">
+  <div id="greenBar" style="width: calc(<%= (VALERA.cheerfulness + 10) * 5%>%"><%= VALERA.cheerfulness %></div>
+</div>
+Усталость:
+<div id="line-container">
+  <div id="greenBar" style="width: <%= VALERA.fatigue %>%"><%= VALERA.fatigue %></div>
+</div>
+Деньги:
+<%= VALERA.money %> <br>
 
 <br> <b>Допустимые действия: </b><br>
 <% actions = available %>
