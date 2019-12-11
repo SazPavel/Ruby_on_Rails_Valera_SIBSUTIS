@@ -18,11 +18,5 @@ RSpec.describe GameController, type: :controller do
         expect(subject).to have_http_status(:success)
       end
     end
-    describe 'GET #execute_action' do
-      subject { get :execute_action }
-      it 'should get execute_action' do
-        expect(subject).to have_http_status(:redirect)
-      end
-    end
   end
 end
