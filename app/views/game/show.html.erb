@@ -3,22 +3,22 @@
 <br><b>Текущие параметры Валеры: </b><br>
 Здоровье:
 <div id="line-container">
-  <div id="greenBar" style="width: <%= VALERA.health %>%" ><%= VALERA.health %></div>
+  <div id="greenBar" style="width: <%= VALERA[current_user.id].health %>%" ><%= VALERA[current_user.id].health %></div>
 </div>
 Мана:
 <div id="line-container">
-  <div id="greenBar" style="width: <%= VALERA.mana %>%"><%= VALERA.mana %></div>
+  <div id="greenBar" style="width: <%= VALERA[current_user.id].mana %>%"><%= VALERA[current_user.id].mana %></div>
 </div>
 Веселье:
 <div id="line-container">
-  <div id="greenBar" style="width: calc(<%= (VALERA.cheerfulness + 10) * 5%>%"><%= VALERA.cheerfulness %></div>
+  <div id="greenBar" style="width: calc(<%= (VALERA[current_user.id].cheerfulness + 10) * 5%>%"><%= VALERA[current_user.id].cheerfulness %></div>
 </div>
 Усталость:
 <div id="line-container">
-  <div id="greenBar" style="width: <%= VALERA.fatigue %>%"><%= VALERA.fatigue %></div>
+  <div id="greenBar" style="width: <%= VALERA[current_user.id].fatigue %>%"><%= VALERA[current_user.id].fatigue %></div>
 </div>
 Деньги:
-<%= VALERA.money %> <br>
+<%= VALERA[current_user.id].money %> <br>
 
 <br> <b>Допустимые действия: </b><br>
 <% actions = available %>
