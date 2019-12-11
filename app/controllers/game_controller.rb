@@ -3,7 +3,7 @@
 # GameController
 class GameController < ApplicationController
   include GameHelper
-  before_action :authenticate_user!, only: %i[load_valera save_valera]
+  before_action :authenticate_user!
 
   def show
     if not VALERA[current_user.id]
