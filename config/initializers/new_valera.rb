@@ -1,1 +1,1 @@
-VALERA = Valera.new
+VALERA = {}
