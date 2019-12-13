@@ -1,8 +1,8 @@
 [
   {
     "name": "work",
-    "before_text": "Go to a work",
-    "after_text": "Work! Work! Work!",
+    "before_text": "Пойти работать!",
+    "after_text": "Работать, афроамериканец! Солнце еще высоко!",
     "conds": [
       { 
         "field":"mana",
@@ -32,8 +32,8 @@
   },
   {
     "name": "behold",
-    "before_text": "Behold nature",
-    "after_text": "Medication for the melancholy",
+    "before_text": "Созерцать природу",
+    "after_text": "Слава, роскошный вид! и тогда восславь солнце!",
     "conds": [],
     "effects": [
       {
@@ -51,8 +51,8 @@
   },
   {
     "name": "wine",
-    "before_text": "Drink wine and watch TV serial",
-    "after_text": "In vino veritas",
+    "before_text": "Пить вино и смотреть сериалы",
+    "after_text": "In vino veritas!",
     "conds": [
       { 
         "field":"money",
@@ -86,8 +86,8 @@
   },
   {
     "name": "bar",
-    "before_text": "Go to the bar",
-    "after_text": "Up all night with Kerry King. I got to tell ya poker's his thing.",
+    "before_text": "Пойти в бар",
+    "after_text": "Заходят в бар француз, американец и Валера...",
     "conds": [
       { 
         "field":"money",
@@ -117,8 +117,8 @@
   },
   {
     "name": "marginal",
-    "before_text": "Drink with marginals",
-    "after_text": "I'm a intellectual in the third generation",
+    "before_text": "Выпить с маргинальными личностями",
+    "after_text": "Я в трёх поколениях интеллигент!",
     "conds": [
       { 
         "field":"money",
@@ -148,8 +148,8 @@
   },
   {
     "name": "sing1",
-    "before_text": "Sing to the subway",
-    "after_text": "This is my favourite song",
+    "before_text": "Петь в переходе",
+    "after_text": "Чёрный вооороон, что кружишься...",
     "conds": [
       { 
         "field":"mana",
@@ -175,8 +175,8 @@
   },
   {
     "name": "sing2",
-    "before_text": "Sing to the subway",
-    "after_text": "This is my favourite song",
+    "before_text": "Петь в переходе",
+    "after_text": "Чёрный вооороон, что кружишься...",
     "conds": [
       { 
         "field":"mana",
@@ -202,8 +202,8 @@
   },
   {
     "name": "sing3",
-    "before_text": "Sing to the subway",
-    "after_text": "This is my favourite song",
+    "before_text": "Петь в переходе",
+    "after_text": "Чёрный вооороон, что кружишься...",
     "conds": [
       { 
         "field":"mana",
@@ -233,8 +233,8 @@
   },
   {
     "name": "sleep1",
-    "before_text": "Go to bed",
-    "after_text": "Let there be night",
+    "before_text": "Спать",
+    "after_text": "Утро вечера...бодунее.",
     "conds": [
       { 
         "field":"mana",
@@ -256,8 +256,8 @@
   },
   {
     "name": "sleep2",
-    "before_text": "Go to bed",
-    "after_text": "Let there be night",
+    "before_text": "Спать",
+    "after_text": "Утро вечера...бодунее.",
     "conds": [
       { 
         "field":"mana",
@@ -279,8 +279,8 @@
   },
   {
     "name": "sleep3",
-    "before_text": "Go to bed",
-    "after_text": "Let there be night",
+    "before_text": "Спать",
+    "after_text": "Утро вечера...бодунее.",
     "conds": [
       { 
         "field":"mana",
