@@ -1,64 +1,62 @@
 <%= render 'for_render/menu' %>
 <h1><center>Информация о действиях Валеры</center></h1>
 
-<% if false %>
-
-<% if current_user.try(:admin?) %>
-  <%= link_to 'Создать новое действие', new_article_path %>
-<% end %>
-
-
-<table>
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= article.title %></td>
-      <td><%= link_to '<button type="button">Подробнее</button>'.html_safe, article_path(article) %></td>
-      <% if current_user.try(:admin?) %>
-        <td><%= link_to '<button type="button">Изменить</button>'.html_safe, edit_article_path(article) %></td>
-        <td><%= link_to '<button type="button">Удалить</button>'.html_safe, article_path(article),
-                method: :delete,
-                data: { confirm: 'Вы уверены?' } %></td>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
-
-<% end %>
-
 <% rus_params = {'health'=>'Здоровье', 'mana'=>'Мана',
                  'cheerfulness'=>'Веселье',
                  'fatigue'=>'Усталость', 'money'=>'Деньги'} %>
 
 <% actions = ActionLoader.new('action.yaml').load %>
 
-<% actions.each do %>
+
+<% action_hash = {} %>
+<% actions.each do |a| %>
+  <% tmp = [] %>
+  <% actions.each_with_index do |aa, i| %>
+    <% tmp.push(aa) if aa.name.chop == a.name.chop %>
+  <% end %>
+  <% action_hash[a.name.chop] = tmp %>
 <% end %>
 
-<% actions.each_with_index do |a, ind| %>
-  <h3> <%= ind + 1 %> </h3>
-  <b> Имя в коде:</b>        <%= a.name.chomp %> <br>
-  <b> Название: </b><%= a.before_text %> <br>
-  <b> Текст:  </b> <%= a.after_text %> <br>
-  <b> Условия: </b>
-    <%='<Нет>' if a.conds == [] %>
-    <% a.conds.each_with_index do |ac, c_i| %>
-      <%= rus_params[ac['field']] %>
-      <%= ac['operator'] %>
-      <%= ac['value'] %>
-      <i><%= 'и' unless a.conds[c_i + 1].nil? %></i>
-    <% end %>
-      <br>
-  <b> Эффекты: </b>
-    <%='<Нет>' if a.effects == [] %>
-    <% a.effects.each_with_index do |ae, e_i| %>
-      <%= rus_params[ae['field']] %>
-      <%= ae['operator'] %>
-      <%= ae['value'] %>
-      <i><%= 'и' unless a.effects[e_i + 1].nil? %></i>
-    <% end %>
+<% action_index = 0 %>
+<% action_hash.each_key do |key| %>
+  <% action_index += 1 %>
+  <% action_hash[key].each_with_index do |a, ind| %>
+    <% if ind == 0 %>
+      <h3> <%= action_index %> </h3>
 
+      <% if false %>
+      <b> <%= 'Имя в коде:' %></b>        <%= a.name.chomp %> <br>
+      <% end %>
+
+      <b> <%='Название:' %> </b><%= a.before_text %> <br>
+      <b> <%='Текст:' %>  </b> <%= a.after_text %> 
+    <% end %>
+    <br>
+    &nbsp;&nbsp;
+    <b> Условия: </b>
+      <%='<Нет>' if a.conds == [] %>
+      <% a.conds.each_with_index do |ac, c_i| %>
+        <%= rus_params[ac['field']] %>
+        <%= ac['operator'] %>
+        <%= ac['value'] %>
+        <i><%= 'и' unless a.conds[c_i + 1].nil? %></i>
+      <% end %>
+        <br>
+    &nbsp;&nbsp;
+    <b> Эффекты: </b>
+      <%='<Нет>' if a.effects == [] %>
+      <% a.effects.each_with_index do |ae, e_i| %>
+        <%= rus_params[ae['field']] %>
+        <%= ae['operator'] %>
+        <%= ae['value'] %>
+        <i><%= 'и' unless a.effects[e_i + 1].nil? %></i>
+      <% end %>
+      <% if not action_hash[key][ind + 1].nil? %>
+        <br><b>ИЛИ</b>
+      <% end %>
+
+  <% end %>
   <br><br>
 <% end %>
-
 
 <%= render 'for_render/sign' %>
