@@ -1,10 +1,14 @@
 <%= render 'for_render/menu' %>
 <h1><center>Информация о действиях Валеры</center></h1>
+
+<% if false %>
+
 <% if current_user.try(:admin?) %>
   <%= link_to 'Создать новое действие', new_article_path %>
 <% end %>
-<table>
 
+
+<table>
   <% @articles.each do |article| %>
     <tr>
       <td><%= article.title %></td>
@@ -18,5 +22,43 @@
     </tr>
   <% end %>
 </table>
+
+<% end %>
+
+<% rus_params = {'health'=>'Здоровье', 'mana'=>'Мана',
+                 'cheerfulness'=>'Веселье',
+                 'fatigue'=>'Усталость', 'money'=>'Деньги'} %>
+
+<% actions = ActionLoader.new('action.yaml').load %>
+
+<% actions.each do %>
+<% end %>
+
+<% actions.each_with_index do |a, ind| %>
+  <h3> <%= ind + 1 %> </h3>
+  <b> Имя в коде:</b>        <%= a.name.chomp %> <br>
+  <b> Название: </b><%= a.before_text %> <br>
+  <b> Текст:  </b> <%= a.after_text %> <br>
+  <b> Условия: </b>
+    <%='<Нет>' if a.conds == [] %>
+    <% a.conds.each_with_index do |ac, c_i| %>
+      <%= rus_params[ac['field']] %>
+      <%= ac['operator'] %>
+      <%= ac['value'] %>
+      <i><%= 'и' unless a.conds[c_i + 1].nil? %></i>
+    <% end %>
+      <br>
+  <b> Эффекты: </b>
+    <%='<Нет>' if a.effects == [] %>
+    <% a.effects.each_with_index do |ae, e_i| %>
+      <%= rus_params[ae['field']] %>
+      <%= ae['operator'] %>
+      <%= ae['value'] %>
+      <i><%= 'и' unless a.effects[e_i + 1].nil? %></i>
+    <% end %>
+
+  <br><br>
+<% end %>
+
 
 <%= render 'for_render/sign' %>
