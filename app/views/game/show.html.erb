@@ -35,13 +35,16 @@
 
 <br> <b>Игровое меню: </b><br>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to '<button style="height:50px;width:200px" type="button">Новая игра</button>'.html_safe, {:controller => 'game', :action => 'init_valera'} %>
+<%= link_to '<button style="height:50px;width:200px" type="button">Новая игра</button>'.html_safe,
+             {:controller => 'game', :action => 'init_valera'} %>
 <br>
 <% if user_signed_in? %>
-&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to '<button style="height:50px;width:200px" type="button">Загрузить</button>'.html_safe, {:controller => 'game', :action => 'load_valera'} %>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to '<button style="height:50px;width:200px" type="button">Сохранить</button>'.html_safe, {:controller => 'game', :action => 'save_valera'} %>
-<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to '<button style="height:50px;width:200px" type="button">Загрузить</button>'.html_safe,
+               {:controller => 'game', :action => 'load_valera'} %>
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to '<button style="height:50px;width:200px" type="button">Сохранить</button>'.html_safe,
+               {:controller => 'game', :action => 'save_valera'} %>
+  <br>
 <% end %>
 <%= render 'for_render/sign' %>
