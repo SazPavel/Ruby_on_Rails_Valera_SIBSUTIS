@@ -1,3 +1,4 @@
+<body style="margin-left:8px">
 <%= render 'for_render/menu' %>
 
 <br><b>Текущие параметры Валеры: </b><br>
@@ -23,28 +24,57 @@
 
 <br> <b>Допустимые действия: </b><br>
 <% actions = available %>
+<% long_bottom = 0 %>
 <% actions.each do |a| %>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to ('<button style="height:50px;width:200px" type="button">' +
-             a.before_text + '</button>').html_safe,
-            {:controller => 'game', :action => 'execute_action', :action_name => a.name}
-%> <br>
-
+  <% long_bottom = a.before_text.length * 8 if a.before_text.length * 8 > long_bottom %>
 <% end %>
-<br><br>
+
+<% nrows = (actions.length % 3 == 0) ? actions.length / 3 : actions.length / 3 + 1%>
+<table cellpadding="2" cellspacing="4">
+  <% (0..nrows * 3 - 1).each do |ind| %>
+    <% if ind % 3 == 0 %>
+      <tr>
+    <% end %>
+    <td>
+      <% a = actions[ind] %>
+      <% if not a.nil? %>
+        <%= link_to ('<button style="height:48px;width:' +
+                     long_bottom.to_s + 'px" type="button">' +
+                     a.before_text + '</button>').html_safe,
+                     {:controller => 'game', :action => 'show',
+                     :action_name => a.name}
+        %>
+      <% end %>
+    </td>
+    <% if ind % 3 == 2 %>
+      </tr>
+    <% end %>
+  <% end %> 
+</table>
+
+<br>
+<%= @last_action %>
+<br>
 
 <br> <b>Игровое меню: </b><br>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to '<button style="height:50px;width:200px" type="button">Новая игра</button>'.html_safe,
+<table cellpadding="2" cellspacing="4">
+<tr>
+<td>
+<%= link_to '<button style="height:48px;width:160px" type="button">Новая игра</button>'.html_safe,
              {:controller => 'game', :action => 'init_valera'} %>
-<br>
+</td>
 <% if user_signed_in? %>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to '<button style="height:50px;width:200px" type="button">Загрузить</button>'.html_safe,
+<td>
+  <%= link_to '<button style="height:48px;width:160px" type="button">Загрузить</button>'.html_safe,
                {:controller => 'game', :action => 'load_valera'} %>
-  <br>&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to '<button style="height:50px;width:200px" type="button">Сохранить</button>'.html_safe,
+</td>
+<td>
+  <%= link_to '<button style="height:48px;width:160px" type="button">Сохранить</button>'.html_safe,
                {:controller => 'game', :action => 'save_valera'} %>
-  <br>
+</td>
 <% end %>
+</tr>
+</table>
+<br>
 <%= render 'for_render/sign' %>
+</body>

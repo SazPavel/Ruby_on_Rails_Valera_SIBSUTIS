@@ -4,17 +4,15 @@
 class GameController < ApplicationController
   include GameHelper
   before_action :authenticate_user!
-
   def show
+    @last_action = nil
     if not VALERA[current_user.id]
       VALERA[current_user.id] = Valera.new
     end
-  end
-
-  def execute_action
     action = available.find { |a| a.name == params[:action_name] }
-    valeroid = action.execute!(VALERA[current_user.id]) unless action.nil?
-    redirect_to action: "show"
+    action.execute!(VALERA[current_user.id]) unless action.nil?
+    params = params.except(:action_name) unless params.nil?
+    @last_action = action.after_text unless action.nil?
   end
     
   def init_valera

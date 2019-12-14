@@ -10,6 +10,5 @@ module GameHelper
   def valera_update(valera)
     VALERA[current_user.id].reinitialize!(valera.health, valera.mana,
       valera.cheerfulness, valera.fatigue, valera.money)
-
   end
 end
