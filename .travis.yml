@@ -1,0 +1,15 @@
+addons:
+postgresql: 9.5
+before_script:
+- cp config/database.yml.travis config/database.yml
+- psql -c 'CREATE DATABASE valera_test;' -U postgres
+- psql -c "CREATE USER rails_dev WITH PASSWORD '1111';" -U postgres
+dist: trusty
+language: ruby
+rvm:
+- 2.5.1
+script:
+- bundle install
+- bundle exec rails db:migrate
+- bundle exec rspec
+
