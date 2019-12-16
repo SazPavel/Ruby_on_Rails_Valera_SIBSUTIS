@@ -1,5 +1,6 @@
 # README
 
+[![Build Status](https://travis-ci.org/SazPavel/Ruby_on_Rails_Valera_SIBSUTIS.svg?branch=master)](https://travis-ci.org/SazPavel/Ruby_on_Rails_Valera_SIBSUTIS)
 ## Описание
 Это - командный проект по предмету "оптимизация ПО".  
 Реализует мини-игру про "маргинала Валеру".  

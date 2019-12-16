@@ -37,6 +37,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Authentication
 gem 'devise'
+gem 'travis'
 gem 'rails-i18n', '~> 5.1'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
