@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :article do
-    id { 7 }
+    id { 6 }
     title { 'title' }
     text { 'test' }
   end
