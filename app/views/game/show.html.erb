@@ -41,7 +41,7 @@
         <%= link_to ('<button style="height:48px;width:' +
                      long_bottom.to_s + 'px" type="button">' +
                      a.before_text + '</button>').html_safe,
-                     {:controller => 'game', :action => 'show',
+                     {:controller => 'game', :action => 'execute_action',
                      :action_name => a.name}
         %>
       <% end %>

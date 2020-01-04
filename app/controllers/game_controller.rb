@@ -4,17 +4,24 @@
 class GameController < ApplicationController
   include GameHelper
   before_action :authenticate_user!
+  add_flash_types :valera_action
+
   def show
-    @last_action = nil
+    action = all_actions.find { |a| a.name == params[:valera_action] }
     if not VALERA[current_user.id]
       VALERA[current_user.id] = Valera.new
     end
-    action = available.find { |a| a.name == params[:action_name] }
-    action.execute!(VALERA[current_user.id]) unless action.nil?
-    params = params.except(:action_name) unless params.nil?
     @last_action = action.after_text unless action.nil?
   end
     
+  def execute_action
+    action = available.find { |a| a.name == params[:action_name] }
+    action.execute!(VALERA[current_user.id]) unless action.nil?
+    params = params.except(:action_name) unless params.nil?
+
+    redirect_to action: "show", valera_action: action.name
+  end
+
   def init_valera
     @valera = ValeraParam.new
     @valera.health = 100
