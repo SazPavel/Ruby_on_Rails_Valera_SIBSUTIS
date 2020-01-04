@@ -52,11 +52,18 @@
   <% end %> 
 </table>
 
+
+<% if VALERA[current_user.id].health <= 0 %>
+  <div id="youdied" style="color:red;font-family:Times;font-size:200%">
+    &nbsp;&nbsp;YOU DIED
+  </div>
+<% end %>
+
 <br>
 <%= @last_action %>
 <br>
 
-<br> <b>Игровое меню: </b><br>
+<b>Игровое меню: </b><br>
 <table cellpadding="2" cellspacing="4">
 <tr>
 <td>
