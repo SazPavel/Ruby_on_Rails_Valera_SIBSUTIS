@@ -5,7 +5,7 @@
 
 Здоровье:
 <div id="line-container">
-  <div id="greenBar" style="width: <%= VALERA[current_user.id].health %>%" ><%= VALERA[current_user.id].health %></div>
+  <div id="greenBar" style="width: <%= current_user.valera_param.health %>%" ><%= current_user.valera_param.health %></div>
 </div>
 Мана:
 <div id="line-container">
@@ -61,6 +61,10 @@
 
 <br>
 <%= @last_action %>
+<br>
+
+<br>
+<%= [@iozhic] %>
 <br>
 
 <b>Игровое меню: </b><br>

@@ -1,4 +1,5 @@
 class ValeraParam < ApplicationRecord
+  belongs_to :user
   validates :user_id, presence: true, numericality: true
   validates :health, presence: true, 
     		numericality: { greater_than_or_equal_to: 0,

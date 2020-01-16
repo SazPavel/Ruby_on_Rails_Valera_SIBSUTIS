@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_034144) do
+ActiveRecord::Schema.define(version: 2020_01_10_165930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_034144) do
   end
 
   create_table "valera_params", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "health"
     t.integer "mana"
     t.integer "cheerfulness"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_034144) do
     t.integer "money"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_valera_params_on_user_id"
   end
 
   create_table "valeractions", force: :cascade do |t|

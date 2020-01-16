@@ -11,22 +11,66 @@ class GameController < ApplicationController
     if not VALERA[current_user.id]
       VALERA[current_user.id] = Valera.new
     end
+    if current_user.valera_param.nil?
+      valeraa = ValeraParam.new
+      valeraa.health = 100
+      valeraa.mana = 0
+      valeraa.cheerfulness = 0
+      valeraa.fatigue = 0
+      valeraa.money = 100
+      current_user.valera_param = valeraa
+    end
     @last_action = action.after_text unless action.nil?
+    @user = current_user.id
+    @iozhic = current_user.valera_param
+
   end
     
-  def execute_action
+  def execute_action    
+    valera = Valera.new(
+      current_user.valera_param.health,
+      current_user.valera_param.mana,
+      current_user.valera_param.cheerfulness,
+      current_user.valera_param.fatigue,
+      current_user.valera_param.money
+    )
     action = available.find { |a| a.name == params[:action_name] }
-    action.execute!(VALERA[current_user.id]) unless action.nil?
+    action.execute!(valera) unless action.nil?
     params = params.except(:action_name) unless params.nil?
+    
+    current_user.valera_param.health = valera.health
+    current_user.valera_param.mana = valera.mana
+    current_user.valera_param.cheerfulness = valera.cheerfulness
+    current_user.valera_param.fatigue = valera.fatigue
+    current_user.valera_param.money = valera.money
+    current_user.valera_param.save
+    
+    VALERA[current_user.id].reinitialize!(
+      current_user.valera_param.health, 
+      current_user.valera_param.mana,
+      current_user.valera_param.cheerfulness,
+      current_user.valera_param.fatigue,
+      current_user.valera_param.money
+    )
+      
 
     redirect_to action: "show", valera_action: action.name
   end
 
   def init_valera
-    @valera = ValeraParam.new
-    @valera.health = 100
-    @valera.money = 100
-    valera_update(@valera)
+    current_user.valera_param.health = 100
+    current_user.valera_param.mana = 0
+    current_user.valera_param.cheerfulness = 0
+    current_user.valera_param.fatigue = 0
+    current_user.valera_param.money = 100
+    current_user.valera_param.save
+    VALERA[current_user.id].reinitialize!(
+      current_user.valera_param.health, 
+      current_user.valera_param.mana,
+      current_user.valera_param.cheerfulness,
+      current_user.valera_param.fatigue,
+      current_user.valera_param.money
+    )
     redirect_to action: "show"
   end
   
